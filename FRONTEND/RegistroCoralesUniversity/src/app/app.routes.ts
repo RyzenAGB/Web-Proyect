@@ -3,6 +3,7 @@ import { LoginComponent } from '../auth/login/login.component';
 import { AlumnoComponent } from '../perfiles/alumno/alumno.component';
 import { ProfesorComponent } from '../perfiles/profesor/profesor.component';
 import { RegisterComponent } from '../auth/register/register.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,10 @@ export const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent,
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
     },
     {
         path: '**',
