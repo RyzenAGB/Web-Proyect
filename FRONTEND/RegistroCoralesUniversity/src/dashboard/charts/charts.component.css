@@ -10,3 +10,7 @@ mat-card {
   color: #000000; /* Texto negro */
 }
 
+canvas {
+  max-width: 100%;
+  height: auto;
+}

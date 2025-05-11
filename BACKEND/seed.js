@@ -4,7 +4,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./escuela.db');
 
-const faker = require('faker'); // Instala con: npm install faker
+const faker = require('faker'); 
 
 db.serialize(() => {
   //Crear tablas si no existen

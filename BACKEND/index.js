@@ -3,13 +3,13 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const db = require('./db'); // Importamos conexión a SQLite
+const db = require('./db'); 
 const dashboardRoutes = require('./routes/dashboard.routes');
 
 
 const app = express();
 const PORT = 3000;
-const SECRET_KEY = 'clave-secreta-supersegura'; // Puedes mover esto a un .env o archivo config
+const SECRET_KEY = 'clave-secreta-supersegura'; 
 
 
 
@@ -49,6 +49,11 @@ app.post('/api/register', async (req, res) => {
 // ===================
 app.post('/api/login', (req, res) => {
   const { correo, password } = req.body;
+
+  // Validar que los campos no estén vacíos
+  if (!correo || !password) {
+    return res.status(400).json({ error: 'Correo y contraseña son requeridos' });
+  }
 
   db.get(`SELECT * FROM usuarios WHERE correo = ?`, [correo], async (err, usuario) => {
     if (err) return res.status(500).json({ error: 'Error interno' });

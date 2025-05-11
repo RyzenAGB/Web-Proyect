@@ -70,16 +70,15 @@ import { CommonModule } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ChartData } from 'chart.js';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; // Importar el módulo
 
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css'],
-  imports: [CommonModule, NgChartsModule, MatCardModule, MatIconModule],
+  imports: [CommonModule, NgChartsModule, MatCardModule, MatIconModule, MatProgressSpinnerModule], // Agregar el módulo aquí
 })
 export class ChartsComponent implements OnInit {
-  // Configuración de las opciones del gráfico de barras
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
     plugins: {
@@ -90,7 +89,6 @@ export class ChartsComponent implements OnInit {
     },
   };
 
-  // Configuración de los datos del gráfico de barras
   public barChartData: ChartConfiguration<'bar'>['data'] = {
     labels: [],
     datasets: [
@@ -102,12 +100,79 @@ export class ChartsComponent implements OnInit {
     ],
   };
 
+  public pieChartOptions: ChartConfiguration<'pie'>['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+      },
+    },
+  };
+
+  public pieChartData: ChartConfiguration<'pie'>['data'] = {
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+      },
+    ],
+  };
+
+  public lineChartOptions: ChartConfiguration<'line'>['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+      },
+    },
+  };
+
+  public lineChartData: ChartConfiguration<'line'>['data'] = {
+    labels: [],
+    datasets: [
+      {
+        label: 'Cursos por Mes',
+        data: [],
+        borderColor: '#42A5F5',
+        tension: 0.4,
+        fill: false,
+      },
+    ],
+  };
+
+  public isLoading: boolean = true;
+
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
-    this.dashboardService.getRegistrosPorMes().subscribe((registros) => {
-      this.barChartData.labels = registros.map((r) => r.mes);
-      this.barChartData.datasets[0].data = registros.map((r) => r.total);
+    this.loadChartData();
+  }
+
+  private loadChartData(): void {
+    Promise.all([
+      this.dashboardService.getRegistrosPorMes().toPromise().then((registros) => {
+        if (registros) {
+          this.barChartData.labels = registros.map((r) => r.mes);
+          this.barChartData.datasets[0].data = registros.map((r) => r.total);
+        }
+      }),
+      this.dashboardService.getProfesoresPorMes().toPromise().then((data) => {
+        if (data) {
+          this.pieChartData.labels = data.map((d) => d.mes);
+          this.pieChartData.datasets[0].data = data.map((d) => d.total);
+        }
+      }),
+      this.dashboardService.getCursosPorMes().toPromise().then((data) => {
+        if (data) {
+          this.lineChartData.labels = data.map((d) => d.mes);
+          this.lineChartData.datasets[0].data = data.map((d) => d.total);
+        }
+      }),
+    ]).finally(() => {
+      this.isLoading = false;
     });
   }
 }

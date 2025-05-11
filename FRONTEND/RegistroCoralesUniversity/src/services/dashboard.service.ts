@@ -14,6 +14,17 @@ export interface RegistroPorMes {
   total: number;
 }
 
+export interface CursosPorMes {
+  mes: string;
+  total: number;
+}
+export interface ProfesoresPorMes {
+  mes: string;
+  total: number;
+}
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,4 +40,12 @@ export class DashboardService {
   getRegistrosPorMes(): Observable<RegistroPorMes[]> {
     return this.http.get<RegistroPorMes[]>(`${this.apiUrl}/registros`);
   }
+  getProfesoresPorMes() {
+    return this.http.get<CursosPorMes[]>(`${this.apiUrl}/profesores-por-mes`);
+  }
+
+  getCursosPorMes() {
+    return this.http.get<ProfesoresPorMes[]>(`${this.apiUrl}/cursos-por-mes`);
+  }
+
 }
