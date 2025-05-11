@@ -2,12 +2,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts';
+import { MatCardModule } from '@angular/material/card'; 
+import { MatIconModule } from '@angular/material/icon';
+
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-charts',
   standalone: true,
-  imports: [CommonModule, NgChartsModule],
+  imports: [CommonModule, NgChartsModule, MatCardModule, MatIconModule],
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css']
 })

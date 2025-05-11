@@ -1,0 +1,11 @@
+mat-card {
+  border-radius: 1rem;
+}
+
+mat-icon {
+  vertical-align: middle;
+}
+mat-card {
+  background-color: #ffffff !important; /* Fondo blanco */
+  color: #000000; /* Texto negro */
+}
