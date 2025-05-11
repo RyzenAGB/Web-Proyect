@@ -8,7 +8,7 @@ import { ChartsComponent } from './charts/charts.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { NgChartsModule } from 'ng2-charts';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [DashboardComponent, KpisComponent, ChartsComponent],
@@ -16,7 +16,9 @@ import { NgChartsModule } from 'ng2-charts';
     CommonModule,
     MatCardModule,
     MatIconModule,
-    NgChartsModule
-  ]
+    NgChartsModule,
+    BrowserAnimationsModule // Necesario para Angular Material
+  ],
+  exports: [DashboardComponent] // Exporta los componentes que necesites usar fuera de este módulo
 })
 export class DashboardModule {}

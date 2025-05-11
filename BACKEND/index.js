@@ -4,10 +4,14 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('./db'); // Importamos conexión a SQLite
+const dashboardRoutes = require('./routes/dashboard.routes');
+
 
 const app = express();
 const PORT = 3000;
 const SECRET_KEY = 'clave-secreta-supersegura'; // Puedes mover esto a un .env o archivo config
+
+
 
 // Middleware
 app.use(cors());
@@ -97,6 +101,9 @@ app.get('/api/perfil', verificarToken, (req, res) => {
     datos: req.usuario
   });
 });
+
+
+app.use('/', dashboardRoutes);
 
 // ========================
 // Iniciar servidor

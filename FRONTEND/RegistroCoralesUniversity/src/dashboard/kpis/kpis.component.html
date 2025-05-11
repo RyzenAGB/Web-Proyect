@@ -1,20 +1,27 @@
-<div class="row">
-  <div class="col-md-4 mb-3">
-    <mat-card class="text-center">
-      <mat-icon>people</mat-icon>
-      <h4>{{ registros }} Registros</h4>
+<div class="row text-center">
+  <div class="col-md-4" *ngIf="kpis">
+    <mat-card>
+      <mat-card-title>Total Estudiantes</mat-card-title>
+      <mat-card-content>
+        <h2>{{ kpis.totalEstudiantes }}</h2>
+      </mat-card-content>
     </mat-card>
   </div>
-  <div class="col-md-4 mb-3">
-    <mat-card class="text-center">
-      <mat-icon>autorenew</mat-icon>
-      <h4>{{ cambios }} Cambios recientes</h4>
+  <div class="col-md-4" *ngIf="kpis">
+    <mat-card>
+      <mat-card-title>Total Cursos</mat-card-title>
+      <mat-card-content>
+        
+        <h2>{{ kpis.totalCursos }}</h2>
+      </mat-card-content>
     </mat-card>
   </div>
-  <div class="col-md-4 mb-3">
-    <mat-card class="text-center">
-      <mat-icon>warning</mat-icon>
-      <h4>{{ alertas }} Alertas</h4>
+  <div class="col-md-4" *ngIf="kpis">
+    <mat-card>
+      <mat-card-title>Total Profesores</mat-card-title>
+      <mat-card-content>
+        <h2>{{ kpis.totalProfesores }}</h2>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>
