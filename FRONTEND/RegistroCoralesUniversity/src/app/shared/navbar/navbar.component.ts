@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,13 +17,37 @@ import { AuthService } from '../../../services/auth.service';
 export class NavbarComponent implements OnInit {
   usuario: { nombre: string; rol: string } | null = null;
   fechaHoraActual: string = '';
+   private usuarioSubscription!: Subscription;
+   private routerSubscription!: Subscription;
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.usuario = this.authService.obtenerUsuario();
+    // Suscribirse a los cambios del usuario
+    this.usuarioSubscription = this.authService.usuario$.subscribe(usuario => {
+      this.usuario = usuario; // Actualizar usuario cuando cambie
+    });
+
+    // Suscribirse a los eventos de navegación
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.usuario = this.authService.obtenerUsuario(); // Actualizar usuario al cambiar de ruta
+      });
+
+
     this.actualizarFechaHora();
     setInterval(() => this.actualizarFechaHora(), 1000); // Actualiza cada segundo
+  }
+
+    ngOnDestroy(): void {
+    // Limpiar suscripciones para evitar fugas de memoria
+    if (this.usuarioSubscription) {
+      this.usuarioSubscription.unsubscribe();
+    }
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   shouldShowNavbar(): boolean {
