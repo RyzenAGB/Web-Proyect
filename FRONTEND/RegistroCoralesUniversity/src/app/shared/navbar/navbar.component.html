@@ -1,0 +1,44 @@
+  <!-- Mostrar la navbar solo si no está en login o register -->
+<nav *ngIf="shouldShowNavbar()" class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm py-3">
+  <div class="container-fluid">
+    <!-- Logo / Marca -->
+    <a class="navbar-brand fw-bold fs-4" routerLink="/dashboard">
+      <i class="bi bi-mortarboard-fill me-2"></i>Corales University
+    </a>
+
+    <!-- Botón Toggle (Responsive) -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Enlaces del menú -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto ms-3">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/visualizacion" routerLinkActive="active">Visualizar Estudiantes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/crud" routerLinkActive="active">Gestionar Estudiantes</a>
+        </li>
+      </ul>
+
+      <!-- Botón de Cerrar Sesión -->
+      <div class="d-flex">
+        <button class="btn btn-light text-primary fw-semibold" (click)="cerrarSesion()">
+          <i class="bi bi-box-arrow-right me-1"></i> Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
