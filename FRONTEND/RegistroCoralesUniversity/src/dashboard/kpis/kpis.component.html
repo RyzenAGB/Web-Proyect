@@ -26,30 +26,39 @@
   </div>
 </div> -->
 
-
 <div class="row text-center">
-  <div class="col-md-4 mb-3" *ngIf="kpis">
-    <mat-card class="kpi-card">
-      <mat-card-title>Total Estudiantes</mat-card-title>
-      <mat-card-content>
-        <h2>{{ kpis.totalEstudiantes }}</h2>
-      </mat-card-content>
-    </mat-card>
+  <div class="col-md-4 mb-4" *ngIf="kpis">
+    <div
+      class="card shadow-sm"
+      style="border-color: #bd3f13; border-color: #a82f03"
+    >
+      <div
+        class="card-header fw-bold text-white"
+        style="background-color: #bd3f13; border-color: #a82f03"
+      >
+        Total Estudiantes
+      </div>
+      <div class="card-body">
+        <h2 class="display-6">{{ kpis.totalEstudiantes }}</h2>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4 mb-3" *ngIf="kpis">
-    <mat-card class="kpi-card">
-      <mat-card-title>Total Cursos</mat-card-title>
-      <mat-card-content>
-        <h2>{{ kpis.totalCursos }}</h2>
-      </mat-card-content>
-    </mat-card>
+
+  <div class="col-md-4 mb-4" *ngIf="kpis">
+    <div class="card border-success shadow-sm">
+      <div class="card-header fw-bold bg-success text-white">Total Cursos</div>
+      <div class="card-body">
+        <h2 class="display-6">{{ kpis.totalCursos }}</h2>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4 mb-3" *ngIf="kpis">
-    <mat-card class="kpi-card">
-      <mat-card-title>Total Profesores</mat-card-title>
-      <mat-card-content>
-        <h2>{{ kpis.totalProfesores }}</h2>
-      </mat-card-content>
-    </mat-card>
+
+  <div class="col-md-4 mb-4" *ngIf="kpis">
+    <div class="card border-info shadow-sm">
+      <div class="card-header fw-bold bg-info text-white">Total Profesores</div>
+      <div class="card-body">
+        <h2 class="display-6">{{ kpis.totalProfesores }}</h2>
+      </div>
+    </div>
   </div>
 </div>
