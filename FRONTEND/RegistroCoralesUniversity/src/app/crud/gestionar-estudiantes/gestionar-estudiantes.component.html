@@ -1,0 +1,83 @@
+<mat-card>
+  <mat-card-title>Gestión de Estudiantes</mat-card-title>
+
+  <!-- Formulario para crear o actualizar estudiante -->
+  <form [formGroup]="estudianteForm" (ngSubmit)="guardarEstudiante()" *ngIf="puedeEditar" class="mb-4">
+    <div class="row g-3 align-items-end">
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="apellido" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Fecha de registro</mat-label>
+          <input matInput type="date" formControlName="fecha_registro" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-1 text-end">
+        <button mat-flat-button color="primary" type="submit" [disabled]="estudianteForm.invalid">
+          {{ estudianteEditando ? 'Actualizar' : 'Agregar' }}
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Tabla de estudiantes -->
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 w-100 mt-4">
+
+    <!-- ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let est">{{ est.id }}</td>
+    </ng-container>
+
+    <!-- Nombre -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+      <td mat-cell *matCellDef="let est">{{ est.nombre }}</td>
+    </ng-container>
+
+    <!-- Apellido -->
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido</th>
+      <td mat-cell *matCellDef="let est">{{ est.apellido }}</td>
+    </ng-container>
+
+    <!-- Fecha de registro -->
+    <ng-container matColumnDef="fecha_registro">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+      <td mat-cell *matCellDef="let est">{{ est.fecha_registro | date }}</td>
+    </ng-container>
+
+    <!-- Acciones -->
+    <ng-container matColumnDef="acciones">
+      <ng-container *ngIf="puedeEditar">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      </ng-container>
+      <ng-container *ngIf="puedeEditar">
+        <td mat-cell *matCellDef="let est">
+          <button mat-icon-button color="primary" (click)="editar(est)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminarEstudiante(est.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+</mat-card>

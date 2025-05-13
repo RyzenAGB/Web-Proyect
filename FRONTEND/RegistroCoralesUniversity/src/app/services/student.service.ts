@@ -8,6 +8,22 @@ export class StudentService {
   constructor(private http: HttpClient) {}
 
   getEstudiantes() {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}`);
   }
+  crearEstudiante(estudiante: any) {
+    return this.http.post<any>(this.apiUrl, estudiante);
+  }
+
+  eliminarEstudiante(id: number) {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+
+  actualizarEstudiante(id: number, estudiante: any) {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, estudiante);
+  }
+  
+  getEstudiantesDetallado(){
+    return this.http.get<any[]>(`${this.apiUrl}-detallado`);
+  }
+
 }

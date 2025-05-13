@@ -5,6 +5,7 @@ import { ProfesorComponent } from '../perfiles/profesor/profesor.component';
 import { RegisterComponent } from '../auth/register/register.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { TablaEstudiantesComponent } from './visualizacion/tabla-estudiantes/tabla-estudiantes.component';
+import { GestionarEstudiantesComponent } from './crud/gestionar-estudiantes/gestionar-estudiantes.component';
 
 
 export const routes: Routes = [
@@ -36,6 +37,10 @@ export const routes: Routes = [
         path: 'visualizacion',
         component: TablaEstudiantesComponent,
 
+    },
+    {
+        path: 'crud',
+        component: GestionarEstudiantesComponent,
     },
     {
         path: '**',
