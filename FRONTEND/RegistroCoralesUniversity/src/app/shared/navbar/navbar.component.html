@@ -26,9 +26,9 @@
           <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/visualizacion" routerLinkActive="active">Visualizar Estudiantes</a>
+          <a class="nav-link" routerLink="/visualizacion" routerLinkActive="active">Visualizacion</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="esProfesor()">
           <a class="nav-link" routerLink="/crud" routerLinkActive="active">Gestionar Estudiantes</a>
         </li>
       </ul>

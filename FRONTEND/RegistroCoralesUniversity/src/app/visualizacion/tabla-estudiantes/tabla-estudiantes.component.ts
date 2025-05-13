@@ -17,7 +17,7 @@ import autoTable from 'jspdf-autotable';
 
 (jsPDF as any).autoTable = autoTable;
 
-@Component({
+@Component({ 
   selector: 'app-tabla-estudiantes',
   standalone: true,
   imports: [
@@ -47,10 +47,19 @@ export class TablaEstudiantesComponent implements OnInit, AfterViewInit {
   constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
+    
     this.studentService.getEstudiantes().subscribe((data) => {
       this.dataSource.data = data;
       this.loading = false;
     });
+
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'nombre': return item.nombre.toLowerCase();
+        case 'fecha_registro': return new Date(item.fecha_registro);
+        default: return item[property];
+      }
+    };
   }
 
   ngAfterViewInit(): void {
@@ -58,6 +67,7 @@ export class TablaEstudiantesComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log('Paginator:', this.paginator); // Depuración
+    console.log('Sort:', this.sort); // Depuración
   }
 
   filtrar() {

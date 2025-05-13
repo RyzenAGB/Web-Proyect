@@ -22,5 +22,9 @@ export class NavbarComponent {
     cerrarSesion() {
     this.authService.logout();
   }
+  
+  esProfesor(): boolean {
+    return this.authService.esProfesor();
+  }
 
 }
