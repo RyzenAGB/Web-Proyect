@@ -10,4 +10,6 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 })
 export class AppComponent {
   title = 'RegistroCoralesUniversity';
+  
+  
 }

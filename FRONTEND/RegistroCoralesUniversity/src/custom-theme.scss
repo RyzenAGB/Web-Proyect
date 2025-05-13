@@ -14,3 +14,15 @@ html {
     density: 0,
   ));
 }
+
+:root {
+  --primary-color: #0056b3; /* Azul más oscuro */
+  --accent-color: #ff5722; /* Naranja vibrante */
+  --background-color: #f4f4f4; /* Fondo claro */
+  --text-color: #333333; /* Texto oscuro */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

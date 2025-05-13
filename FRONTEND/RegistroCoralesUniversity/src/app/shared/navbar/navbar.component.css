@@ -1,0 +1,21 @@
+nav {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+/* Estilo para el enlace activo */
+.active-link {
+  color: #ffa052 !important;
+  font-weight: bolder;
+  text-decoration: underline;
+}
