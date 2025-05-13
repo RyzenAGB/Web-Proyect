@@ -32,6 +32,11 @@ export const routes: Routes = [
         canActivate: [AuthGuard], // Solo accesible si está autenticado
     },
     {
+        path: 'visualizacion',
+        component: TablaEstudiantesComponent,
+        canActivate: [AuthGuard], // Solo accesible si está autenticado
+    },
+    {
         path: '**',
         redirectTo: 'login',
         pathMatch: 'full',
