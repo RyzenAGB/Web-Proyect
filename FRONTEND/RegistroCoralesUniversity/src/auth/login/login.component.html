@@ -1,21 +1,63 @@
-<div class="container mt-5">
-    <h2>Iniciar sesión</h2>
-    <form (ngSubmit)="login()">
-      <div class="mb-3">
-        <label>Correo:</label>
-        <input type="email" [(ngModel)]="correo" name="correo" class="form-control" required />
+<div class="container-fluid vh-100 bg-light">
+  <div class="row justify-content-center align-items-center h-100">
+    <!-- Incio de la tarjeta Inicio-->
+    <div class="col-md-10 col-lg-6 col-xl-4">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h2 class="fw-bold" style="color: #bd3f13">Iniciar sesión</h2>
+            <p class="text-muted">Ingresa tus credenciales para continuar</p>
+          </div>
+
+          <form (ngSubmit)="login()">
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Correo electrónico</label>
+              <input
+                type="email"
+                [(ngModel)]="correo"
+                name="correo"
+                class="form-control form-control border-2 py-3"
+                placeholder="ejemplo@correo.com"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Contraseña</label>
+              <input
+                type="password"
+                [(ngModel)]="password"
+                name="password"
+                class="form-control form-control-lg border-2 py-3"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <button
+              class="btn btn-primary btn-lg w-100 py-3 mb-3 fw-bold"
+              style="background-color: #bd3f13; border-color: #a82f03"
+            >
+              Ingresar
+            </button>
+
+            <div class="text-center mt-3">
+              <a
+                routerLink="/register"
+                class="text-decoration-none fw-semibold"
+                style="color: #bd3f13"
+              >
+                ¿No tienes cuenta?
+                <span class="text-decoration-underline">Regístrate aquí</span>
+              </a>
+            </div>
+          </form>
+
+          <div *ngIf="error" class="alert alert-danger mt-4 p-3">
+            {{ error }}
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label>Contraseña:</label>
-        <input type="password" [(ngModel)]="password" name="password" class="form-control" required />
-      </div>
-      <button class="btn btn-primary">Ingresar</button>
-    </form>
-    <div class="mt-3">
-      <a routerLink="/register" class="text-primary text-decoration-underline" style="cursor: pointer;">¿No tienes cuenta? Regístrate aquí</a>
-    </div>
-    <div *ngIf="error" class="alert alert-danger mt-3">
-      {{ error }}
     </div>
   </div>
-  
+</div>
