@@ -12,6 +12,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import * as XLSX from 'xlsx';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import * as Papa from 'papaparse';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
+(jsPDF as any).autoTable = autoTable;
 
 @Component({
   selector: 'app-tabla-estudiantes',
@@ -119,4 +123,24 @@ export class TablaEstudiantesComponent implements OnInit, AfterViewInit {
 
     lector.readAsText(archivo);
   }
+
+  generarPDF(): void {
+    const doc = new jsPDF();
+    const columnas = ['ID', 'Nombre', 'Fecha de Registro'];
+    const filas = this.dataSource.filteredData.map((est: any) => [
+      est.id,
+      est.nombre,
+      est.fecha_registro,
+    ]);
+
+    doc.text('Reporte de Estudiantes', 10, 10);
+    autoTable(doc, {
+      head: [columnas],
+      body: filas,
+      startY: 20,
+    });
+
+    doc.save('reporte-estudiantes.pdf');
+  }
+
 }

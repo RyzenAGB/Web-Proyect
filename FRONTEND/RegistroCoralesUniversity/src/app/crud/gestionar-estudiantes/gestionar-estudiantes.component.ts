@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { StudentService } from '../../services/student.service';
 import { AuthService } from '../../../services/auth.service';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-gestionar-estudiantes',
@@ -112,4 +114,23 @@ ngOnInit(): void {
     this.estudianteEditando = estudiante;
     this.estudianteForm.patchValue(estudiante);
   }
+  
+  generarPDF(): void {
+  const doc = new jsPDF();
+  const columnas = ['ID', 'Nombre', 'Fecha de Registro'];
+  const filas = this.dataSource.filteredData.map((est: any) => [
+    est.id,
+    est.nombre,
+    est.fecha_registro,
+  ]);
+
+  doc.text('Reporte de Estudiantes', 10, 10);
+  autoTable(doc, {
+    head: [columnas],
+    body: filas,
+    startY: 20,
+  });
+
+  doc.save('reporte-estudiantes.pdf');
+}
 }

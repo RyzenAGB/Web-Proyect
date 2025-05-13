@@ -18,7 +18,7 @@ export class RegisterComponent {
     nombre: '',
     correo: '',
     password: '',
-    rol: 'alumno' // O por defecto 'profesor'
+    rol: 'alumno' 
   };
   errorMessage: string | null = null;
   successMessage: string | null = null;
