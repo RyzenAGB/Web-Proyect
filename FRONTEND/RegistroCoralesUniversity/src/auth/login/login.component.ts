@@ -23,8 +23,7 @@ export class LoginComponent {
     this.auth.login(this.correo, this.password).subscribe({
       next: () => {
         const user = this.auth.obtenerUsuario();
-        if (user.rol === 'alumno') this.router.navigate(['/alumno']);
-        else if (user.rol === 'profesor') this.router.navigate(['/profesor']);
+        this.router.navigate(['/dashboard'])
       },
       error: err => {
         this.error = err.error?.error || 'Error al iniciar sesión';

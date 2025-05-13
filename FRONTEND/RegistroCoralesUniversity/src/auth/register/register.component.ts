@@ -31,7 +31,7 @@ export class RegisterComponent {
         // Si el registro es exitoso, muestra el mensaje de éxito
         this.successMessage = response.mensaje;
         this.errorMessage = null; // Limpiar cualquier mensaje de error previo
-        this.router.navigate(['/login']); // Redirige a la página de login (si lo deseas)
+        this.router.navigate(['/dashboard']) // Redirige a la página de login (si lo deseas)
       },
       (error) => {
         // Si ocurre un error, muestra el mensaje de error

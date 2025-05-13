@@ -43,4 +43,11 @@ export class AuthService {
   obtenerToken() {
     return localStorage.getItem('token');
   }
+
+    esProfesor(): boolean {
+    const user = this.obtenerUsuario();
+    return user?.rol === 'profesor';
+  }
+
+
 }
