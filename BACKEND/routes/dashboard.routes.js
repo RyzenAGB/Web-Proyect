@@ -55,6 +55,15 @@ router.get('/cursos-por-mes', (req, res) => {
   });
 })
 
+router.get('/estudiantes', (req, res) => {
+  db.all(`SELECT id, nombre || ' ' || apellido AS nombre, fecha_registro FROM estudiantes`, [], (err, rows) => {
+    if (err) {
+      console.error('Error al obtener estudiantes:', err.message);
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+    res.json(rows);
+  });
+});
 
 
 module.exports = router;

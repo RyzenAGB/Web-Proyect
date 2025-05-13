@@ -4,6 +4,7 @@ import { AlumnoComponent } from '../perfiles/alumno/alumno.component';
 import { ProfesorComponent } from '../perfiles/profesor/profesor.component';
 import { RegisterComponent } from '../auth/register/register.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { TablaEstudiantesComponent } from './visualizacion/tabla-estudiantes/tabla-estudiantes.component';
 
 
 export const routes: Routes = [
@@ -30,6 +31,11 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent,
+    },
+    {
+        path: 'visualizacion',
+        component: TablaEstudiantesComponent,
+
     },
     {
         path: '**',
